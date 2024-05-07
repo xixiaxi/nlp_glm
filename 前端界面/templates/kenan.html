@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../static/kenan.css">
+    <style>
+        /* 设置全局样式 */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="sidebar" style="display:flex;flex-direction: column">
+        <div id="sidebar-title">知识抽取</div>
+        <select id="select-box">
+            <option value="option1">Option 1</option>
+            <option value="option2">Option 2</option>
+            <option value="option3">Option 3</option>
+        </select>
+    </div>
+    <div id="chat-container">
+        <div id="chat-box">
+            <!-- 聊天消息将显示在这里 -->
+        </div>
+        <div id="input-container">
+            <input type="text" id="user-input" placeholder="Type your message...">
+            <button id="send-btn" onclick="sendMessage()">发送</button>
+        </div>
+    </div>
+</div>
+<script>
+    async function sendMessage() {
+            // 获取下拉选择框的值
+            var selectedValue = document.getElementById("select-box").value;
+
+            // 将值赋给 prompt_type 变量
+            var prompt_type = selectedValue;
+            console.log("Selected value: " + prompt_type);
+            var userInput = document.getElementById("user-input").value;
+
+            if (userInput.trim() !== "") {
+                // 获取用户输入的内容
+                var chatBox = document.getElementById("chat-box");
+
+                // 用户消息
+                var userMessageContainer = document.createElement("div");
+                userMessageContainer.classList.add("message-container", "user-message-container");
+
+                var userMessage = document.createElement("div");
+                userMessage.classList.add("message", "user-message");
+                userMessage.textContent = userInput;
+
+                var userAvatar = document.createElement("div")
+                userAvatar.textContent = 'ME'
+                userAvatar.classList.add("avatar-text")
+
+
+                userMessageContainer.appendChild(userAvatar);
+                userMessageContainer.appendChild(userMessage);
+                chatBox.appendChild(userMessageContainer);
+
+                // 向后端发送用户输入并获取回复
+                fetch('/get_response', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: 'user_input=' + encodeURIComponent(userInput),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // 显示后端返回的回复
+                    var replyMessageContainer = document.createElement("div");
+                    replyMessageContainer.classList.add("message-container", "reply-message-container");
+
+                    var replyMessage = document.createElement("div");
+                    replyMessage.classList.add("message", "reply-message");
+                    replyMessage.textContent = data.response;
+
+                    var replyAvatar = document.createElement("div")
+                    replyAvatar.textContent = 'GLM'
+                    replyAvatar.classList.add('avatar-text')
+
+                    replyMessageContainer.appendChild(replyAvatar);
+                    replyMessageContainer.appendChild(replyMessage);
+                    chatBox.appendChild(replyMessageContainer);
+                })
+                .catch(error => console.error('Error:', error));
+
+                // 清空输入框
+                document.getElementById("user-input").value = "";
+            }
+        }
+</script>
+
+</body>
+</html>

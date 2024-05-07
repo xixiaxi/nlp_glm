@@ -1,0 +1,162 @@
+/* 设置整体容器样式 */
+#container {
+    display: flex;
+    height: 100%;
+}
+
+/* 设置侧边栏样式 */
+#sidebar {
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
+    width: 300px;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* 设置侧边栏标题样式 */
+#sidebar-title {
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    font-size: 100px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+/* 设置下拉选择框样式 */
+#prompt-select-box{
+    display: flex;
+    justify-content: center;
+    width: 200px;
+    height: 35px;
+    margin-bottom: 20px;
+}
+#model-select-box{
+    display: flex;
+    justify-content: center;
+    width: 200px;
+    height: 35px;
+}
+
+/* 设置聊天容器样式 */
+#chat-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background: url('back_img.jpeg'); /* 替换为你的图片路径 */
+    background-size: cover;
+    position: relative;
+}
+
+/* 设置聊天框样式 */
+#chat-box {
+    flex-grow: 1;
+    overflow-y: auto;
+    background-color: rgba(255, 255, 255, 0.5); /* 根据需要调整透明度 */
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-left: 60px;
+    margin-right: 50px;
+    position: relative;
+}
+
+/* 设置输入框容器样式 */
+#input-container {
+    display: flex;
+    align-items: center;
+    margin-left: 60px;
+    margin-bottom: 20px;
+}
+
+/* 设置用户输入框样式 */
+#user-input {
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+/* 设置发送按钮样式 */
+#send-btn {
+    padding: 10px;
+    width: 150px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 50px;
+}
+
+/* 设置消息容器样式 */
+.message-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+/* 设置消息框样式 */
+.message {
+    max-width: 70%;
+    word-wrap: break-word;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 10px;
+    position: relative;
+    z-index: 1; /* 确保消息显示在箭头上方 */
+}
+
+/* 设置用户消息容器样式 */
+.user-message-container {
+    align-self: flex-end;
+    justify-content: flex-start;
+    flex-direction: row-reverse; /* 调整头像和消息框的位置 */
+}
+
+/* 设置用户消息框样式 */
+.user-message {
+    align-self: flex-end; /* 从右边开始显示消息 */
+    background-color: #5777d5;
+    color: white;
+}
+
+/* 设置回复消息容器样式 */
+.reply-message-container {
+    align-self: flex-start;
+    justify-content: flex-start;
+}
+
+/* 设置回复消息框样式 */
+.reply-message {
+    align-self: flex-start;
+    background-color: #ddd;
+    color: #333;
+}
+
+/* 设置头像样式 */
+.avatar {
+    width: 40px;
+    height: 40px;
+    /*border-radius: 60%;*/
+    margin-right: 5px;
+    z-index: 2; /* 确保头像显示在消息框上方 */
+}
+
+.avatar-text {
+    width: 40px; /* 宽度 */
+    height: 40px; /* 高度 */
+    background-color: #ccc; /* 背景颜色 */
+    color: #fff; /* 文字颜色 */
+    text-align: center; /* 文字居中 */
+    line-height: 40px; /* 文字行高，使其在垂直方向居中 */
+    border-radius: 50%; /* 圆角 */
+    font-weight: bold; /* 文字粗细 */
+}
